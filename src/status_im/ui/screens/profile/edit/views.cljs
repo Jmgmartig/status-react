@@ -102,3 +102,4 @@
       [status-prompt changed-account]]
      (when (and valid-name? profile-changed?)
        [sticky-button (label :t/save) #(dispatch [:my-profile/save-profile])])]))
+
