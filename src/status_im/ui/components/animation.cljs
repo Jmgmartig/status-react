@@ -54,3 +54,6 @@
   (js->clj (.getLayout value-xy)))
 
 (defn easing [] js/ReactNative.Easing)
+
+(defn anim-loop [animation]
+  (.loop animated animation))

@@ -4,7 +4,9 @@
             [status-im.js-dependencies :as dependencies]))
 
 (def locale (or (.-locale rn-dependencies/i18n) "___en"))
-(def country-code (subs locale 3 5))
+(def country-code (if (= (count locale) 2)
+                    "us"
+                    (subs locale 3 5)))
 
 ;; todo check wrong numbers, .getNumber returns empty string
 (defn format-phone-number [number]

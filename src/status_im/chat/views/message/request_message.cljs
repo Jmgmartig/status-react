@@ -29,7 +29,8 @@
       (if (and @loop? (not @answered?))
         request-message-icon-scale-delay
         0))
-     (anim/spring val {:toValue to-value})]))
+     (anim/spring val {:toValue to-value
+                       :useNativeDriver false})]))
 
 (defn request-button-animation-logic
   [{:keys [to-value val loop? answered?] :as context}]
@@ -74,7 +75,7 @@
 
 (defview message-content-command-request
   [{:keys [message-id content] :as message}]
-  (letsubs [command             [:get-command (:content-command-ref content)] 
+  (letsubs [command             [:get-command (:content-command-ref content)]
             answered?           [:is-request-answered? message-id]
             status-initialized? [:get :status-module-initialized?]]
     {:component-will-mount #(when-not (:preview content)
