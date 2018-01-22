@@ -322,7 +322,10 @@
               route-fx (case type
                          (:message
                           :group-message
-                          :public-group-message) {:dispatch [:pre-received-message (transform-protocol-message message)]}
+                          :public-group-message) (let [chat-message (transform-protocol-message message)]
+                                                   (cond-> {}
+                                                     (:content chat-message)
+                                                     (assoc :dispatch [:pre-received-message chat-message])))
                          :pending                (cond-> {::pending-messages-save message}
                                                    chat-message
                                                    (assoc :dispatch
