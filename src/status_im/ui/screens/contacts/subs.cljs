@@ -2,7 +2,6 @@
   (:require [re-frame.core :refer [reg-sub subscribe]]
             [status-im.utils.identicon :refer [identicon]]
             [clojure.string :as str]
-            [taoensso.timbre :as log]
             [status-im.bots.constants :as bots-constants]))
 
 (reg-sub :current-contact
@@ -14,7 +13,6 @@
     (:contacts/contacts db)))
 
 (defn sort-contacts [contacts]
-  (log/debug :sort-contacts contacts)
   (sort (fn [c1 c2]
           (let [name1 (or (:name c1) (:address c1) (:whisper-identity c1))
                 name2 (or (:name c2) (:address c2) (:whisper-identity c2))]
