@@ -378,9 +378,7 @@
   :contact-request-received
   (fn [{{:contacts/keys [contacts]} :db}
        [_ {:keys [from payload]}]]
-    (when (and from
-               ;; NOTE(dmitryn) sometimes message coming with no :contact object
-               (:contact payload))
+    (when from
       (let [{{:keys [name profile-image address status fcm-token]} :contact
              {:keys [public private]}                              :keypair} payload
             existing-contact (get contacts from)
