@@ -18,7 +18,7 @@
                 name2 (or (:name c2) (:address c2) (:whisper-identity c2))]
             (compare (clojure.string/lower-case name1)
                      (clojure.string/lower-case name2))))
-        contacts))
+        (vals contacts)))
 
 (reg-sub :all-added-contacts
   :<- [:get-contacts]
@@ -26,8 +26,6 @@
     (->> contacts
          (remove (fn [[_ {:keys [pending? hide-contact?]}]]
                    (or pending? hide-contact?)))
-         vals
-         (filter #(and (:name %) (:whisper-identity %)))
          (sort-contacts))))
 
 (reg-sub :all-added-people-contacts
