@@ -20,8 +20,8 @@
             (log/debug :sort-contacts name1 name2)
             (log/debug :sort-contacts-c1 (select-keys c1 [:name :address :whisper-identity]))
             (log/debug :sort-contacts-c2 (select-keys c2 [:name :address :whisper-identity]))
-            (compare (clojure.string/lower-case (str name1))
-                     (clojure.string/lower-case (str name2)))))
+            (compare (clojure.string/lower-case name1)
+                     (clojure.string/lower-case name2))))
         (vals contacts)))
 
 (reg-sub :all-added-contacts
